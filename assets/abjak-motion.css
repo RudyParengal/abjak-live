@@ -1,0 +1,309 @@
+/* ABJAK luxury motion — site chrome only. Does not fight Framer layout. */
+:root {
+  --abjak-pink: #FF8A8A;
+  --abjak-purple: #32297D;
+  --abjak-warm: #c45a28;
+  --abjak-amber: #e08a4a;
+  --abjak-void: #050308;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+#main,
+body > main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- atmosphere (all pages) ---------- */
+.abjak-atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.abjak-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  will-change: transform, opacity;
+}
+
+.abjak-aurora--a {
+  width: 78vw;
+  height: 56vw;
+  max-width: 1100px;
+  max-height: 820px;
+  left: 50%;
+  top: -18%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 40%, rgba(90, 50, 160, 0.34) 0%, rgba(50, 41, 125, 0.12) 42%, transparent 70%);
+  animation: abjak-aurora-drift 32s ease-in-out infinite;
+}
+
+.abjak-aurora--b {
+  width: 52vw;
+  height: 42vw;
+  max-width: 720px;
+  right: -12%;
+  top: 18%;
+  background: radial-gradient(ellipse at 40% 50%, rgba(196, 90, 40, 0.16) 0%, rgba(255, 138, 138, 0.08) 40%, transparent 72%);
+  animation: abjak-aurora-drift 38s ease-in-out infinite reverse;
+}
+
+.abjak-aurora--c {
+  width: 60vw;
+  height: 40vw;
+  max-width: 860px;
+  left: -8%;
+  bottom: 6%;
+  background: radial-gradient(ellipse at 60% 50%, rgba(50, 41, 125, 0.2) 0%, rgba(80, 40, 130, 0.08) 50%, transparent 74%);
+  animation: abjak-aurora-drift 44s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+.abjak-grain {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+
+/* ---------- hero orb ---------- */
+.framer-td4esz-container.abjak-orb-host,
+.abjak-hero-orb-host {
+  pointer-events: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  z-index: 0 !important;
+}
+
+.abjak-hero-orb-host {
+  position: absolute;
+  top: -2vh;
+  left: 50%;
+  width: min(92vw, 860px);
+  height: min(78vh, 740px);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.abjak-orb {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.abjak-orb__bloom {
+  position: absolute;
+  width: 118%;
+  height: 118%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(255, 138, 138, 0.16) 0%, transparent 38%),
+    radial-gradient(circle at 32% 32%, rgba(160, 90, 255, 0.28) 0%, transparent 42%),
+    radial-gradient(circle at 70% 38%, rgba(50, 41, 125, 0.38) 0%, transparent 46%),
+    radial-gradient(circle at 52% 78%, rgba(196, 90, 40, 0.22) 0%, transparent 40%);
+  filter: blur(22px);
+  animation: abjak-orb-pulse 8.5s ease-in-out infinite;
+}
+
+.abjak-orb__sphere {
+  position: relative;
+  width: min(92%, 680px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: abjak-orb-drift 22s ease-in-out infinite;
+}
+
+.abjak-orb__disc {
+  position: absolute;
+  inset: 9%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 48% 44%, #120816 0%, #07050c 58%, #040308 100%);
+  box-shadow:
+    inset 0 0 60px 18px rgba(0, 0, 0, 0.85),
+    0 0 40px 8px rgba(50, 41, 125, 0.18);
+}
+
+.abjak-orb__eclipse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 198deg,
+    #ffb089 0deg,
+    var(--abjak-pink) 42deg,
+    #c48bff 95deg,
+    #6e5ad6 150deg,
+    var(--abjak-purple) 200deg,
+    #5a2a1a 255deg,
+    var(--abjak-warm) 300deg,
+    #ffb089 360deg
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 71.2%, #000 72.4%, #000 76.6%, transparent 78.4%);
+          mask: radial-gradient(closest-side, transparent 71.2%, #000 72.4%, #000 76.6%, transparent 78.4%);
+  filter: blur(0.4px);
+  animation: abjak-orb-spin 48s linear infinite;
+}
+
+.abjak-orb__warm {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 58% 82%, rgba(224, 138, 74, 0.55) 0%, rgba(196, 90, 40, 0.12) 28%, transparent 52%);
+  mix-blend-mode: screen;
+  animation: abjak-orb-pulse 9s ease-in-out infinite reverse;
+}
+
+.abjak-orb__cool {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, rgba(186, 120, 255, 0.42) 0%, rgba(50, 41, 125, 0.18) 32%, transparent 55%);
+  mix-blend-mode: screen;
+}
+
+.abjak-orb__spec {
+  position: absolute;
+  inset: 18% 28% 62% 38%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 70%);
+  filter: blur(6px);
+  opacity: 0.55;
+}
+
+/* Revive dead Framer canvas node: hide empty canvas if still present */
+.framer-td4esz-container canvas {
+  display: none !important;
+}
+
+/* ---------- stats ---------- */
+[data-framer-name="Stats"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.abjak-stat {
+  font-variant-numeric: tabular-nums;
+}
+
+.abjak-stat-bar {
+  width: 100%;
+  height: 2px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.abjak-stat-bar > i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(235deg, #FF8A8A 0%, #32297D 100%);
+  transform-origin: left center;
+}
+
+.abjak-stat-bar.is-on > i {
+  width: var(--abjak-fill, 100%);
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Show desktop-only stats + pricing on small screens (snapshot has no mobile duplicates) */
+@media (max-width: 809.98px) {
+  .ssr-variant.hidden-pm05cw:has([data-framer-name="Stats"]),
+  .ssr-variant.hidden-pm05cw:has(#pricingtrigger) {
+    display: block !important;
+  }
+}
+
+/* ---------- pricing: single centred AI Audit ---------- */
+.framer-1xieqnu[data-framer-name="Bottom grid"] {
+  grid-template-columns: minmax(260px, 540px) !important;
+  justify-content: center !important;
+  justify-items: stretch !important;
+}
+
+[data-framer-name="starter"] {
+  display: none !important;
+}
+
+.abjak-audit-note {
+  margin: 4px 0 0;
+  padding: 0 6px;
+  font-family: "Figtree", "Figtree Placeholder", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.45;
+  color: rgb(128, 128, 128);
+  text-align: center;
+  max-width: 540px;
+  justify-self: center;
+}
+
+@keyframes abjak-orb-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  40% { transform: translate3d(1.6%, -1.2%, 0) scale(1.03); }
+  70% { transform: translate3d(-1.2%, 1.4%, 0) scale(0.985); }
+}
+
+@keyframes abjak-orb-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.045); }
+}
+
+@keyframes abjak-orb-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes abjak-aurora-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  50% { transform: translate3d(3%, 4%, 0) scale(1.08); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abjak-orb__sphere,
+  .abjak-orb__bloom,
+  .abjak-orb__eclipse,
+  .abjak-orb__warm,
+  .abjak-aurora,
+  .abjak-stat-bar > i {
+    animation: none !important;
+    transition: none !important;
+  }
+  .abjak-stat-bar > i {
+    width: var(--abjak-fill, 100%) !important;
+  }
+}
+
+/* Keep copy above orbs; sit the fallback orb inside the Framer root. */
+[data-framer-root] {
+  position: relative;
+}
+[data-framer-root] > .abjak-hero-orb-host {
+  z-index: 0;
+}
+[data-framer-root] > *:not(.abjak-hero-orb-host) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 809.98px) {
+  [data-framer-name="Hero"] .ssr-variant.hidden-pm05cw {
+    display: block !important;
+  }
+}
