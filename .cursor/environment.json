@@ -1,0 +1,10 @@
+{
+  "name": "abjak-live static site",
+  "terminals": [
+    {
+      "name": "web",
+      "command": "node scripts/dev-server.js"
+    }
+  ],
+  "ports": [3000]
+}
