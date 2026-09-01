@@ -1,0 +1,11 @@
+{
+  "name": "abjak-live static site",
+  "install": "npm install -g serve@14",
+  "terminals": [
+    {
+      "name": "web",
+      "command": "serve -l 3000 ."
+    }
+  ],
+  "ports": [3000]
+}
